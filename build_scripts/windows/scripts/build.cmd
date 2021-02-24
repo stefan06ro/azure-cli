@@ -146,7 +146,12 @@ for /f %%f in ('dir /b /s *.pyc') do (
 popd
 
 :: Remove __pycache__
-for /d /r %BUILDING_DIR%\Lib\site-packages %%d in (__pycache__) do (
+for /d /r %BUILDING_DIR%\Lib\site-packages\pip %%d in (__pycache__) do (
+    if exist %%d rmdir /s /q "%%d"
+)
+
+:: Remove aio
+for /d /r %BUILDING_DIR%\Lib\site-packages\azure\mgmt %%d in (aio) do (
     if exist %%d rmdir /s /q "%%d"
 )
 
