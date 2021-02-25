@@ -159,9 +159,11 @@ for /d /r %BUILDING_DIR%\Lib\site-packages\azure\mgmt %%d in (aio) do (
 
 :: Remove dist-info
 echo remove dist-info
-for /d %BUILDING_DIR%\Lib\site-packages %%d in ("*.dist-info") do (
+pushd %BUILDING_DIR%\Lib\site-packages
+for /d %%d in ("*.dist-info") do (
     if exist %%d rmdir /s /q "%%d"
 )
+popd
 
 if %errorlevel% neq 0 goto ERROR
 
