@@ -158,14 +158,6 @@ for /d /r %BUILDING_DIR%\Lib\site-packages\azure\mgmt %%d in (aio) do (
     if exist %%d rmdir /s /q "%%d"
 )
 
-:: Remove dist-info
-echo remove dist-info
-pushd %BUILDING_DIR%\Lib\site-packages
-for /d %%d in ("*.dist-info") do (
-    if exist %%d rmdir /s /q "%%d"
-)
-popd
-
 if %errorlevel% neq 0 goto ERROR
 
 ::ensure propagate_env_change.exe is available
